@@ -86,9 +86,14 @@ def cefMessageConstructor(cefHeader, cefBody):
     return cefMessageResponse
 
 
-def cefMessagePublisher(cefMessage):
+def cefMessagePrePublisher(cefMessage, cefPublisher):
     """
-    
-    :param cefMessage: 
+    This function is used as a (pre)publisher of the event towards a third party SIEM solution. we PREpublish it to
+    another Fn Project function so we can ensure that the logic of the SIEM integration is segregated from the more
+    (generic) CEF message construction. In an actual implementation the integration (publishing) to a SIEM will be a
+    case by case like codebase while the message construction can stay the same. Hence... splitting into two functions.
+
+    :param cefMessage:
+    :param cefPublisher: FQDN pointer to the Fn Project function; cefPublisher.
     :return: 
     """
