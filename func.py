@@ -20,7 +20,7 @@ def handler(ctx, data: io.BytesIO=None):
 
 
 
-def cefHeader():
+def cefHeader(cefVersion,cefDeviceVendor,cefDeviceProduct,cefDeviceVersion,cefEventType,cefEventName,cefEventSeverity):
     """
     This function is used to construct the CEF header based upon the information provided to the Python function and it
     will return a proper formatted CEF format header. This holds that the full CEF payload to be send to a third party
