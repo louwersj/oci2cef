@@ -19,7 +19,13 @@ __email__ = "louwersj@gmail.com"
 from fdk import response
 
 
+# noinspection SyntaxError
 def handler(ctx, data: io.BytesIO=None):
+    """
+    Generic (main) handler to handle the incoming request and associated payload file and to ensure a proper response
+    is provided to the caller. The Python function "handler" is the default Python function used for a Fn Project
+    function and is derived from the default boilerplate template.
+    """
     name = "World"
     try:
         body = json.loads(data.getvalue())
@@ -34,8 +40,7 @@ def handler(ctx, data: io.BytesIO=None):
     )
 
 
-
-def cefHeader(cefVersion,cefDeviceVendor,cefDeviceProduct,cefDeviceVersion,cefEventType,cefEventName,cefEventSeverity):
+def cefHeaderConstructor(cefVersion, cefDeviceVendor, cefDeviceProduct, cefDeviceVersion, cefEventType, cefEventName, cefEventSeverity):
     """
     This function is used to construct the CEF header based upon the information provided to the Python function and it
     will return a proper formatted CEF format header. This holds that the full CEF payload to be send to a third party
@@ -50,17 +55,40 @@ def cefHeader(cefVersion,cefDeviceVendor,cefDeviceProduct,cefDeviceVersion,cefEv
     :param cefEventSeverity: severity of the event 0(low) till 10(very high)
 
 
-    :return: proper formatted CEF format header
+    :return: proper formatted CEF message header
     """
 
     return cefHeaderResponse
 
 
-
-def cefBody(x1,x2):
+def cefExtensionConstructor(x1, x2):
     """
 
     :param x1:
     :param x2:
-    :return:
+    :return: proper formatted CEF message extension
+    """
+
+    return cefExtensionResponse
+
+
+def cefMessageConstructor(cefHeader, cefBody):
+    """
+    This function is used to construct the CEF message, in effect stitch the header and the extension together and
+    inspect it for proper formatting. CEF header is constructed in the Python Function cefHeaderConstructor and the
+    extension is constructed in the cefExtensionConstructor as two individual parts.
+
+    :param cefHeader:
+    :param cefBody:
+    :return: proper formatted CEF message (header and extension)
+    """
+
+    return cefMessageResponse
+
+
+def cefMessagePublisher(cefMessage):
+    """
+    
+    :param cefMessage: 
+    :return: 
     """
