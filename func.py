@@ -1,6 +1,21 @@
 import io
 import json
 
+__author__ = "Johan Louwers"
+__copyright__ = "Copyright 2020, Johan Louwers"
+__license__ = "Apache License 2.0"
+__email__ = "louwersj@gmail.com"
+
+''' 
+    This example code is intended to showcase the integration between Oracle Cloud (OCI) events and a third party SIEM 
+    solution where communication is based upon the CEF (Common Event Format) format. Intended deployment target is 
+    OCI Functions which acts as a PaaS solution for Fn Projects based functions and allows for serverless computing. 
+    
+    DO NOTE: this project is in no way or form an official Oracle released project and is in no way or form officially 
+    related to the Oracle corporation. It is purely intended as an private code example to showcase potential 
+    capabilities of using CEF as an integration format.  
+'''
+
 from fdk import response
 
 
