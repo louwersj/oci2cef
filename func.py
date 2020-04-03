@@ -27,6 +27,9 @@ def handler(ctx, data: io.BytesIO=None):
     function and is derived from the default boilerplate template.
     """
     name = "World"
+
+    sys.stderr.write("THIS IS A TEST TO WRITE TO PAPERTRAIL LOG FROM OCI\n")
+
     try:
         body = json.loads(data.getvalue())
         name = body.get("name")
