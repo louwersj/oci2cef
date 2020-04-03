@@ -1,0 +1,42 @@
+{
+	"eventID": "022a63a4-ff77-11e9-a0af-f45c89b1cb17",
+	"eventTime": "2019-11-05T02:50:21Z",
+	"extensions": {
+		"compartmentId": "ocid1.compartment.oc1..unique_id"
+	},
+	"eventType": "com.oraclecloud.databaseservice.createdataguardassociation.begin",
+	"eventTypeVersion": "2.0",
+	"cloudEventsVersion": "0.1",
+	"source": "databaseservice",
+	"contentType": "application/json",
+	"definedTags": {},
+	"data": {
+		"compartmentId": "ocid1.compartment.oc1..unique_id",
+		"compartmentName": "example_name",
+		"resourceName": "my_container_database",
+		"resourceId": "ocid1.dataguard.oc1.phx.unique_id",
+		"availabilityDomain": "all",
+		"freeFormTags": {},
+		"definedTags": {},
+		"additionalDetails": {
+			"id": "ocid1.dataguard.oc1.phx.unique_id",
+			"timeCreated": "2019-06-27T21:15:59.000Z",
+			"timeUpdated": "2019-06-27T21:16:04.389Z",
+			"lifecycleState": "ACTIVE",
+			"lifecycleMessage": "",
+			"dbSystemId": "ocid1.dbsystem.oc1.phx.unique_id",
+			"DatabaseId": "ocid1.database.oc1.phx.unique_id",
+			"DbHomeId": "ocid1.dbhome.oc1.phx.unique_id",
+			"DGConfigId": "022a67c8-ff77-11e9-af6e-f45c89b1cb17",
+			"DGConfigState": "SUCCESS",
+			"LastSyncedTime": "2019-06-27T21:16:04.389Z",
+			"ApplyLag": "2 hours",
+			"SyncState": "SYNCED",
+			"dcsDgUpdateTimestamp": "2019-06-27T21:16:04.389Z",
+			"lastUpdatedIdentifier": "022a6912-ff77-11e9-9e77-f45c89b1cb17",
+			"displayName": "Data Guard Association - Create Begin",
+			"licenseType": "BRING_YOUR_OWN_LICENSE",
+			"workloadType": "Transaction Processing"
+		}
+	}
+}
