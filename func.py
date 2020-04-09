@@ -44,15 +44,26 @@ def handler(ctx, data: io.BytesIO=None):
         ociEventEventTime = body.get("eventTime")    #catch OCI event payload value for eventTime
         ociEventEventType = body.get("eventType")    #catch OCI event payload value for eventType
 
+        ociCefVersion = "0"
+        ociCefDeviceVendor = "Oracle Oci"
+        ociCefDeviceProduct = body.get("source")
+        ociCefDeviceVersion = body.get("eventTypeVersion")
+        ociCefEventType = body.get("eventType")
+        ociCefEventName = body.get("data.additionalDetails.displayName")
+        ociCefEventSeverity = "1"
+
+
+
 
         sys.stderr.write("THIS IS A TEST TO WRITE TO PAPERTRAIL LOG FROM OCI" + ociEventEventID)
+        cefHeader = cefHeaderConstructor(ociCefVersion,ociCefDeviceVendor,ociCefDeviceProduct,ociCefDeviceVersion,ociCefEventType,ociCefEventName,ociCefEventSeverity)
 
     except (Exception, ValueError) as ex:
         print(str(ex))
 
     return response.Response(
         ctx, response_data=json.dumps(
-            {"status": oci2cefProcessStatus}),
+            {"status": ociCefEventName}),
         headers={"Content-Type": "application/json"}
     )
 
@@ -63,13 +74,13 @@ def cefHeaderConstructor(cefVersion, cefDeviceVendor, cefDeviceProduct, cefDevic
     will return a proper formatted CEF format header. This holds that the full CEF payload to be send to a third party
     application is not yet ready. Only the header is constructed in this specific Python function
 
-    :param cefVersion: version of the CEF format (current default is 0)
-    :param cefDeviceVendor: Name of the vendor (current default is Oracle OCI)
-    :param cefDeviceProduct: Name of the product (mapping on OCI "service" name)
-    :param cefDeviceVersion: Version of the service (default should be "latest")
-    :param cefEventType: original CEF name "Device Event Class ID"
-    :param cefEventName: short name / description of the event
-    :param cefEventSeverity: severity of the event 0(low) till 10(very high)
+    :param cefVersion:
+    :param cefDeviceVendor:
+    :param cefDeviceProduct:
+    :param cefDeviceVersion:
+    :param cefEventType:
+    :param cefEventName:
+    :param cefEventSeverity:
 
 
     :return: proper formatted CEF message header
