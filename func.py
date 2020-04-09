@@ -1,5 +1,6 @@
 import io
 import json
+import sys
 
 __author__ = "Johan Louwers"
 __copyright__ = "Copyright 2020, Johan Louwers"
@@ -26,19 +27,32 @@ def handler(ctx, data: io.BytesIO=None):
     is provided to the caller. The Python function "handler" is the default Python function used for a Fn Project
     function and is derived from the default boilerplate template.
     """
-    name = "World"
+
+    # Generic flag which is used to indicate if the oci2cef Fn function succeeded.
+    oci2cefProcessStatus = "OK"
+
+   # ociEventEventID = "" #catch OCI event payload; eventID
+   # name = "World"
+
 
     sys.stderr.write("THIS IS A TEST TO WRITE TO PAPERTRAIL LOG FROM OCI\n")
 
     try:
         body = json.loads(data.getvalue())
-        name = body.get("name")
+
+        ociEventEventID = body.get("eventID")        #catch OCI event payload value for eventID
+        ociEventEventTime = body.get("eventTime")    #catch OCI event payload value for eventTime
+        ociEventEventType = body.get("eventType")    #catch OCI event payload value for eventType
+
+
+        sys.stderr.write("THIS IS A TEST TO WRITE TO PAPERTRAIL LOG FROM OCI" + ociEventEventID)
+
     except (Exception, ValueError) as ex:
         print(str(ex))
 
     return response.Response(
         ctx, response_data=json.dumps(
-            {"message": "Hello {0}".format(name)}),
+            {"status": oci2cefProcessStatus}),
         headers={"Content-Type": "application/json"}
     )
 
